@@ -2,24 +2,24 @@
 
 require_once '../src/init.php';
 
-$config = require_once '../config/config.php';
+// Luodaan uusi Plates-olio ja kytketään se sovelluksen sivupohjiin.
+$templates = new League\Plates\Engine('../src/view');
 
-$request = str_replace($config['urls']['baseUrl'], '', $_SERVER['REQUEST_URI']);
-
-// Selvitetään mitä sivua on kutsuttu ja suoritetaan sivua vastaava käsittelijä.
+// Selvitetään mitä sivua on kutsuttu ja suoritetaan sivua vastaava
+// käsittelijä.
 if ($request === '/' || $request === '/etusivu') {
-  echo '<h1>Tervetuloa VKCleanin kotisivuille</h1>';
+  echo $templates->render('etusivu');
 } else if ($request === '/palvelut') {
-  echo '<h1>Palvelumme</h1>';
+  echo $templates->render('palvelut');
 } else if ($request === '/yhteystiedot') {
-  echo '<h1>Yhteystiedot</h1>';
+  echo $templates->render('yhteystiedot');
 } else if ($request === '/hinnasto') {
-  echo '<h1>Hinnasto</h1>';
+  echo $templates->render('hinnasto');
 } else if ($request === '/tietoa-yrityksesta') {
-  echo '<h1>Tietoa yrityksestä</h1>';
+  echo $templates->render('tietoa-yrityksesta');
 } else {
-  echo '<h1>Pyydettyä sivua ei löytynyt</h1>';
+  echo $templates->render('notfound');
 }
 
-?>
+
 
