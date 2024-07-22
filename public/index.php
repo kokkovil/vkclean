@@ -1,18 +1,13 @@
 <?php
 
-
-
 $request = str_replace('/~vkokkone/vkclean', '', $_SERVER['REQUEST_URI']);
 $request = strtok($request, '?');
 
+require_once '../src/init.php';
 
-  require_once '../src/init.php';
+$templates = new League\Plates\Engine(TEMPLATE_DIR);
 
-
-  $templates = new League\Plates\Engine(TEMPLATE_DIR);
-
-
-  switch ($request) {
+switch ($request) {
     case '/':
     case '/etusivu':
         echo $templates->render('etusivu');
@@ -22,17 +17,20 @@ $request = strtok($request, '?');
         $palvelut = haePalvelut();
         echo $templates->render('palvelut', ['palvelut' => $palvelut]);
         break;
-        case '/palvelu':
-          require_once MODEL_DIR . 'palvelu.php';
-          if (isset($_GET['id'])) {
-              $palvelu = haePalvelu($_GET['id']);
-              if ($palvelu) {
-                  echo $templates->render('palvelu', ['palvelu' => $palvelu]);
-              } else {
-                  echo $templates->render('palvelunotfound');
-          }
+    case '/palvelu':
+        require_once MODEL_DIR . 'palvelu.php';
+        if (isset($_GET['id'])) {
+            $palvelu = haePalvelu($_GET['id']);
+            if ($palvelu) {
+                echo $templates->render('palvelu', ['palvelu' => $palvelu]);
+            } else {
+                echo $templates->render('palvelunotfound');
+            }
         }
-          break;
+        break;
+    case '/lisaa_tili':
+        echo $templates->render('lisaa_tili');
+        break;
     case '/yhteystiedot':
         echo $templates->render('yhteystiedot');
         break;
@@ -45,9 +43,10 @@ $request = strtok($request, '?');
     default:
         echo $templates->render('notfound');
         break;
-  }
+}
 
 ?>
+
 
 
 
