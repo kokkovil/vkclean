@@ -5,8 +5,8 @@
     <meta charset="UTF-8">    
   </head>
   <body>
-    <header>
-      <h1>VK-Clean</h1>
+  <header>
+      <h1><a href="<?=BASEURL?>">VKClean</a></h1>
     </header>
     <section>
       <?=$this->section('content')?>

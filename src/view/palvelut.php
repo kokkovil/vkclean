@@ -6,9 +6,11 @@
 <?php
 
 foreach ($palvelut as $palvelu) {
+    // Luo linkin, jossa palvelu_nimi on linkin teksti ja palvelu_id on linkin kohde
     echo "<div>";
-        echo "<h2><a href='/palvelu?id={$palvelu['palvelu_id']}'>{$palvelu['palvelu_nimi']}</a></h2>"; // Palvelun nimi on linkki
+    echo "<div><a href='palvelu?id=" . $palvelu['palvelu_id'] . "'>" . htmlspecialchars($palvelu['palvelu_nimi']) . "</a></div>";
     echo "</div>";
+
 }
 
 ?>
