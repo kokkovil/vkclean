@@ -7,11 +7,11 @@
 
 foreach ($palvelut as $palvelu) {
     echo "<div>";
-        echo "<h2>{$palvelu['name']}</h2>";
-        echo "<p>{$palvelu['description']}</p>";
-        echo "<p>Hinta: {$palvelu['price']} €</p>";
+        echo "<h2><a href='/palvelu?id={$palvelu['palvelu_id']}'>{$palvelu['palvelu_nimi']}</a></h2>"; // Palvelun nimi on linkki
     echo "</div>";
 }
 
 ?>
 </div>
+
+
