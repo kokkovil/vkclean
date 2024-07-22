@@ -36,11 +36,11 @@ $request = strtok($request, '?');
     case '/yhteystiedot':
         echo $templates->render('yhteystiedot');
         break;
-    case '/hinnasto':
-        echo $templates->render('hinnasto');
+    case '/otayhteytta':
+        echo $templates->render('otayhteytta');
         break;
-    case '/tietoa-yrityksesta':
-        echo $templates->render('tietoa-yrityksesta');
+    case '/tietoayrityksesta':
+        echo $templates->render('tietoayrityksesta');
         break;
     default:
         echo $templates->render('notfound');
