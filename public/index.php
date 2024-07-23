@@ -27,33 +27,26 @@ switch ($request) {
                 echo $templates->render('palvelunotfound');
             }
         }
-        case '/lisaa_tili':
-            if (isset($_POST['laheta'])) {
-                $formdata = cleanArrayData($_POST);
-                require_once MODEL_DIR . 'asiakas.php'; //polku
-        
-                // Kryptataan salasana
-                $salasana = password_hash($formdata['salasana1'], PASSWORD_DEFAULT);
-        
-                // Lisää asiakas tietokantaan
-                $id = lisaaAsiakas(
-                    $formdata['nimi'],
-                    $formdata['yritys'],
-                    $formdata['puhelinnumero'],
-                    $formdata['email'],
-                    $salasana
-                );
-        
-                // Palauta onnistumisviesti
-                echo "Tili on luotu tunnisteella $id";
-                break;
+        break; 
+
+    case '/lisaa_tili':
+        if (isset($_POST['laheta'])) {
+            $formdata = cleanArrayData($_POST);
+            require_once CONTROLLER_DIR . 'tili.php'; 
+
+            // Kutsuu lisaaTili-funktiota lomaketiedoilla
+            $tulos = lisaaTili($formdata);
+
+            if ($tulos['status'] == 200) {
+                echo "Tili on luotu tunnisteella " . htmlspecialchars($tulos['id']);
             } else {
-                // Renderöi lomake
-                echo $templates->render('lisaa_tili');
-                break;
+                echo $templates->render('lisaa_tili', ['formdata' => $formdata, 'error' => $tulos['error']]);
             }
-          
-        break;
+        } else {
+            echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
+        }
+        break; 
+
     case '/yhteystiedot':
         echo $templates->render('yhteystiedot');
         break;
@@ -67,8 +60,8 @@ switch ($request) {
         echo $templates->render('notfound');
         break;
 }
-
 ?>
+
 
 
 
