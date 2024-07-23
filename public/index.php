@@ -29,17 +29,18 @@ switch ($request) {
         }
         case '/lisaa_tili':
             if (isset($_POST['laheta'])) {
+                $formdata = cleanArrayData($_POST);
                 require_once MODEL_DIR . 'asiakas.php'; //polku
         
                 // Kryptataan salasana
-                $salasana = password_hash($_POST['salasana1'], PASSWORD_DEFAULT);
+                $salasana = password_hash($formdata['salasana1'], PASSWORD_DEFAULT);
         
                 // Lisää asiakas tietokantaan
                 $id = lisaaAsiakas(
-                    $_POST['nimi'],
-                    $_POST['yritys'],
-                    $_POST['puhelinnumero'],
-                    $_POST['email'],
+                    $formdata['nimi'],
+                    $formdata['yritys'],
+                    $formdata['puhelinnumero'],
+                    $formdata['email'],
                     $salasana
                 );
         
