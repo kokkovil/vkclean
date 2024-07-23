@@ -9,4 +9,8 @@ function lisaaAsiakas($nimi, $yritys, $puhelinnumero, $email, $salasana) {
     return DB::lastInsertId();
 }
 
+function haeAsiakasSahkopostilla($email) {
+    return DB::run('SELECT * FROM asiakas WHERE email = ?;', [$email])->fetchAll();
+  }
+
 ?>

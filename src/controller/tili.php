@@ -45,6 +45,10 @@ if (isset($formdata['yritys'])) {
   } else {
     if (!filter_var($formdata['email'], FILTER_VALIDATE_EMAIL)) {
       $error['email'] = "Sähköpostiosoite on virheellisessä muodossa.";
+    } else {
+        if (haeAsiakasSahkopostilla($formdata['email'])) {
+          $error['email'] = "Sähköpostiosoite on jo käytössä.";
+        }
     }
   }
 
