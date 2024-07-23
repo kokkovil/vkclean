@@ -37,8 +37,10 @@ switch ($request) {
             // Kutsuu lisaaTili-funktiota lomaketiedoilla
             $tulos = lisaaTili($formdata);
 
-            if ($tulos['status'] == 200) {
-                echo "Tili on luotu tunnisteella " . htmlspecialchars($tulos['id']);
+            if ($tulos['status'] == "200") {
+                echo $templates->render('tili_luotu', ['formdata' => $formdata]);
+                break;
+              
             } else {
                 echo $templates->render('lisaa_tili', ['formdata' => $formdata, 'error' => $tulos['error']]);
             }
