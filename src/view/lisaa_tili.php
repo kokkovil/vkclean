@@ -8,8 +8,8 @@
     <input id="nimi" type="text" name="nimi">
   </div>
   <div>
-    <label for="osoite">Osoite:</label>
-    <input id="osoite" type="text" name="osoite">
+    <label for="yritys">Yritys:</label>
+    <input id="yritys" type="text" name="yritys">
   </div>
   <div>
     <label for="puhelinnumero">puhelinnumero:</label>

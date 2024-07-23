@@ -27,9 +27,31 @@ switch ($request) {
                 echo $templates->render('palvelunotfound');
             }
         }
-        break;
-    case '/lisaa_tili':
-        echo $templates->render('lisaa_tili');
+        case '/lisaa_tili':
+            if (isset($_POST['laheta'])) {
+                require_once MODEL_DIR . 'asiakas.php'; //polku
+        
+                // Kryptataan salasana
+                $salasana = password_hash($_POST['salasana1'], PASSWORD_DEFAULT);
+        
+                // Lisää asiakas tietokantaan
+                $id = lisaaAsiakas(
+                    $_POST['nimi'],
+                    $_POST['yritys'],
+                    $_POST['puhelinnumero'],
+                    $_POST['email'],
+                    $salasana
+                );
+        
+                // Palauta onnistumisviesti
+                echo "Tili on luotu tunnisteella $id";
+                break;
+            } else {
+                // Renderöi lomake
+                echo $templates->render('lisaa_tili');
+                break;
+            }
+          
         break;
     case '/yhteystiedot':
         echo $templates->render('yhteystiedot');
