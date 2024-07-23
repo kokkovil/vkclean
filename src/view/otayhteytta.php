@@ -1,3 +1,3 @@
 <?php $this->layout('template', ['title' => 'Hinnasto']) ?>
 
-<h1>Hinnasto</h1>
+<h1>otayhteyttä</h1>

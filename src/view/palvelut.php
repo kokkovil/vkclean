@@ -1,4 +1,4 @@
-<?php $this->layout('template', ['title' => 'Palvelut']) ?>
+<?php $this->layout('template', ['title' => 'palvelut']) ?>
 
 <h1>Palvelumme</h1>
 

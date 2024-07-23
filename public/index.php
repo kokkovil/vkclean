@@ -52,8 +52,8 @@ switch ($request) {
     case '/yhteystiedot':
         echo $templates->render('yhteystiedot');
         break;
-    case '/otayhteytta':
-        echo $templates->render('otayhteytta');
+    case '/ota_yhteytta':
+        echo $templates->render('ota_yhteytta');
         break;
     case '/tietoayrityksesta':
         echo $templates->render('tietoayrityksesta');
