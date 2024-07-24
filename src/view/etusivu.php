@@ -18,4 +18,4 @@
 
 <p><strong>VKClean – Siivouksen asiantuntijat, jotka saavat tilasi loistamaan.</strong></p><br>
 
-<a href="#contact" class="button">Ota yhteyttä</a>
+

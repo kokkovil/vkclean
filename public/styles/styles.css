@@ -8,12 +8,12 @@
 
   html {
     font-family: 'Rubik', sans-serif;
-    background: rgb(0,34,0);
-    background: linear-gradient(120deg, rgba(0,34,0,1) 0%, rgba(9,136,144,1) 36%, rgba(151,85,121,1) 100%);
+    background: url('../public/images/tausta.jpg') no-repeat center center fixed;
+    background-size: cover;
   }
 
   body {
-    background-color: #fff;
+    background-color: #c6e0e4;
     min-height: 100vh;
     max-width: 40rem;
     margin: 0 auto;
@@ -21,11 +21,12 @@
   }
   
   header {
-    background-color: #B8BAC8;
+    background: linear-gradient(120deg, rgb(220, 241, 241) 0%, rgb(123, 208, 214) 36%, rgb(46, 106, 146) 100%);
     padding: 1rem 1.5rem;
   }
   
   header h1 {
+    text-align: center;
     font-size: 3rem;
     font-weight: normal;
     margin-left: 0.5rem;
@@ -88,7 +89,7 @@
     padding: 0.5rem 3rem;
     border-radius: 0.3rem;
     background-color: #975579;
-    color: #fff;
+    color: #000;
     font-weight: bold;
     min-width: 12rem;
     margin: 1rem auto;
@@ -99,6 +100,68 @@
     font-size: 0.8rem;
   }
   
+  /* Lomakkeen kentät */
+form > div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+/* Tekstikentät ja tekstialueet */
+input[type="text"],
+input[type="email"],
+textarea {
+  border: 1px solid #999;
+  border-radius: 0.3rem;
+  padding: 0.45rem;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  background-color: #fff; /* Taustaväri kentille */
+}
+
+/* Lomakkeen lähetyspainike */
+input[type="submit"] {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.3rem;
+  background-color: #77a7b3; /* Taustaväri sama kuin aiemmin */
+  color: #0a0a0a;
+  font-weight: bold;
+  min-width: 12rem;
+  margin: 1rem auto;
+  cursor: pointer;
+  border: none;
+}
+
+/* Lomakkeen lähetyspainikkeen hover-tila */
+input[type="submit"]:hover {
+  background-color: #7a4b5e; /* Tummempi sävy hover-tilassa */
+}
+
+/* Tekstialueen tyyli */
+textarea {
+  resize: vertical; /* Sallii käyttäjän säätää korkeutta */
+  min-height: 150px;
+}
+
+.navigointi ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around; /* Voit käyttää myös 'flex-start' tai 'flex-end' riippuen haluamastasi kohdistuksesta */
+}
   
+.navigointi li {
+  display: inline;
+}
   
-  
+.navigointi a {
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+  color: #000; /* Voit muuttaa haluamasi värin */
+}
+
+.navigointi a:hover {
+  background-color: #ddd; /* Voit muuttaa hover-efektin värin */
+}

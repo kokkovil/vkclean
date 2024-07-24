@@ -8,12 +8,13 @@
   <body>
   <header>
       <h1><a href="<?=BASEURL?>">VKClean</a></h1>
-      <nav>
+      <nav class="navigointi">
         <ul>
           <li><a href="<?= BASEURL ?>">Etusivu</a></li>
           <li><a href="<?= BASEURL ?>/palvelut">Palvelut</a></li>
           <li><a href="<?= BASEURL ?>/tietoayrityksesta">Tietoa Yrityksestä</a></li>
           <li><a href="<?= BASEURL ?>/yhteystiedot">Yhteystiedot</a></li>
+          <li><a href="<?= BASEURL ?>/ota_yhteytta">Ota Yhteyttä</a></li>
         </ul>
       </nav>
     </header>
