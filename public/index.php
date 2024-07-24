@@ -1,22 +1,20 @@
 <?php
-// Aloitetaan istunnot.
+
 session_start();
 
 // Suoritetaan projektin alustusskripti.
 require_once '../src/init.php';
-    // Haetaan kirjautuneen käyttäjän tiedot.
-    if (isset($_SESSION['user'])) {
-        require_once MODEL_DIR . 'asiakas.php';
-        $loggeduser = haeAsiakas($_SESSION['user']);
-      } else {
-        $loggeduser = NULL;
-      }
-    
+
+// Haetaan kirjautuneen käyttäjän tiedot.
+if (isset($_SESSION['user'])) {
+    require_once MODEL_DIR . 'asiakas.php';
+    $loggeduser = haeAsiakas($_SESSION['user']);
+} else {
+    $loggeduser = NULL;
+}
 
 $request = str_replace('/~vkokkone/vkclean', '', $_SERVER['REQUEST_URI']);
 $request = strtok($request, '?');
-
-require_once '../src/init.php';
 
 $templates = new League\Plates\Engine(TEMPLATE_DIR);
 
@@ -25,11 +23,13 @@ switch ($request) {
     case '/etusivu':
         echo $templates->render('etusivu');
         break;
+
     case '/palvelut':
         require_once MODEL_DIR . 'palvelu.php';
         $palvelut = haePalvelut();
         echo $templates->render('palvelut', ['palvelut' => $palvelut]);
         break;
+
     case '/palvelu':
         require_once MODEL_DIR . 'palvelu.php';
         if (isset($_GET['id'])) {
@@ -40,62 +40,81 @@ switch ($request) {
                 echo $templates->render('palvelunotfound');
             }
         }
-        break; 
+        break;
 
     case '/lisaa_tili':
         if (isset($_POST['laheta'])) {
             $formdata = cleanArrayData($_POST);
-            require_once CONTROLLER_DIR . 'tili.php'; 
+            require_once CONTROLLER_DIR . 'tili.php';
 
-            // Kutsuu lisaaTili-funktiota lomaketiedoilla
             $tulos = lisaaTili($formdata);
 
             if ($tulos['status'] == "200") {
                 echo $templates->render('tili_luotu', ['formdata' => $formdata]);
-                break;
-              
             } else {
                 echo $templates->render('lisaa_tili', ['formdata' => $formdata, 'error' => $tulos['error']]);
             }
         } else {
             echo $templates->render('lisaa_tili', ['formdata' => [], 'error' => []]);
         }
-        break; 
+        break;
 
     case '/yhteystiedot':
         echo $templates->render('yhteystiedot');
         break;
+
     case '/ota_yhteytta':
-        echo $templates->render('ota_yhteytta');
+        if ($loggeduser) {
+            if (isset($_POST['laheta'])) {
+                require_once CONTROLLER_DIR . 'ota_yhteytta.php';
+                $tulos = otaYhteytta();
+
+                if ($tulos['status'] == 200) {
+                    echo $templates->render('kiitos'); // Ohjaa käyttäjä kiitos-sivulle
+                } else {
+                    echo $templates->render('ota_yhteytta', ['formdata' => $_POST, 'error' => $tulos['error']]);
+                }
+            } else {
+                echo $templates->render('ota_yhteytta', ['formdata' => [], 'error' => []]);
+            }
+        } else {
+            echo $templates->render('info'); // Ohjaa kirjautumattomat käyttäjät info-sivulle
+        }
         break;
+
     case '/tietoayrityksesta':
         echo $templates->render('tietoayrityksesta');
         break;
-        case "/kirjaudu":
-            if (isset($_POST['laheta'])) {
-              require_once CONTROLLER_DIR . 'kirjaudu.php';
-              if (tarkistaKirjautuminen($_POST['email'],$_POST['salasana'])) {
+
+    case '/kirjaudu':
+        if (isset($_POST['laheta'])) {
+            require_once CONTROLLER_DIR . 'kirjaudu.php';
+            if (tarkistaKirjautuminen($_POST['email'], $_POST['salasana'])) {
                 session_regenerate_id();
                 $_SESSION['user'] = $_POST['email'];
-                header("Location: " . $config['urls']['baseUrl']);
-              } else {
-                echo $templates->render('kirjaudu', [ 'error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
-              }
+                header("Location: " . BASEURL);
+                exit();
             } else {
-              echo $templates->render('kirjaudu', [ 'error' => []]);
+                echo $templates->render('kirjaudu', ['error' => ['virhe' => 'Väärä käyttäjätunnus tai salasana!']]);
             }
-            break;
-            case "/logout":
-                require_once CONTROLLER_DIR . 'kirjaudu.php';
-                logout();
-                header("Location: " . $config['urls']['baseUrl']);
-                break;
-          
+        } else {
+            echo $templates->render('kirjaudu', ['error' => []]);
+        }
+        break;
+
+    case '/logout':
+        require_once CONTROLLER_DIR . 'kirjaudu.php';
+        logout();
+        header("Location: " . BASEURL);
+        exit();
+
     default:
         echo $templates->render('notfound');
         break;
 }
 ?>
+
+
 
 
 
