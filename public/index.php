@@ -73,6 +73,12 @@ switch ($request) {
               echo $templates->render('kirjaudu', [ 'error' => []]);
             }
         break;
+    case "/logout":
+        require_once CONTROLLER_DIR . 'kirjaudu.php';
+        logout();
+        header("Location: " . $config['urls']['baseUrl']);
+        break;
+      
         
     default:
         echo $templates->render('notfound');
