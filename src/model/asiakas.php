@@ -11,6 +11,10 @@ function lisaaAsiakas($nimi, $yritys, $puhelinnumero, $email, $salasana) {
 
 function haeAsiakasSahkopostilla($email) {
     return DB::run('SELECT * FROM asiakas WHERE email = ?;', [$email])->fetchAll();
-  }
+}
+
+function haeAsiakas($email) {
+    return DB::run('SELECT * FROM asiakas WHERE email = ?;', [$email])->fetch();
+}
 
 ?>

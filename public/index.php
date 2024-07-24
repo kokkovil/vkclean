@@ -2,6 +2,15 @@
 // Aloitetaan istunnot.
 session_start();
 
+  // Haetaan kirjautuneen käyttäjän tiedot.
+  if (isset($_SESSION['user'])) {
+    require_once MODEL_DIR . 'asiakas.php';
+    $loggeduser = haeAsiakas($_SESSION['user']);
+  } else {
+    $loggeduser = NULL;
+  }
+
+
 $request = str_replace('/~vkokkone/vkclean', '', $_SERVER['REQUEST_URI']);
 $request = strtok($request, '?');
 
