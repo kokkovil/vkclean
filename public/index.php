@@ -2,14 +2,16 @@
 // Aloitetaan istunnot.
 session_start();
 
-  // Haetaan kirjautuneen käyttäjän tiedot.
-  if (isset($_SESSION['user'])) {
-    require_once MODEL_DIR . 'asiakas.php';
-    $loggeduser = haeAsiakas($_SESSION['user']);
-  } else {
-    $loggeduser = NULL;
-  }
-
+// Suoritetaan projektin alustusskripti.
+require_once '../src/init.php';
+    // Haetaan kirjautuneen käyttäjän tiedot.
+    if (isset($_SESSION['user'])) {
+        require_once MODEL_DIR . 'asiakas.php';
+        $loggeduser = haeAsiakas($_SESSION['user']);
+      } else {
+        $loggeduser = NULL;
+      }
+    
 
 $request = str_replace('/~vkokkone/vkclean', '', $_SERVER['REQUEST_URI']);
 $request = strtok($request, '?');
@@ -82,14 +84,13 @@ switch ($request) {
             } else {
               echo $templates->render('kirjaudu', [ 'error' => []]);
             }
-        break;
-    case "/logout":
-        require_once CONTROLLER_DIR . 'kirjaudu.php';
-        logout();
-        header("Location: " . $config['urls']['baseUrl']);
-        break;
-      
-        
+            break;
+            case "/logout":
+                require_once CONTROLLER_DIR . 'kirjaudu.php';
+                logout();
+                header("Location: " . $config['urls']['baseUrl']);
+                break;
+          
     default:
         echo $templates->render('notfound');
         break;
