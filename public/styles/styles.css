@@ -23,6 +23,8 @@
   header {
     background: linear-gradient(120deg, rgb(220, 241, 241) 0%, rgb(123, 208, 214) 36%, rgb(46, 106, 146) 100%);
     padding: 1rem 1.5rem;
+    height: 150px;
+    position: relative; /* Tämä mahdollistaa sisäisten absoluuttisten elementtien sijoittelun oikein */
   }
   
   header h1 {
@@ -37,6 +39,20 @@
     text-decoration: none;
   }
   
+  .profile {
+    font-size: small;
+    position: absolute;
+    top: 0.5rem; /* Pystysuuntainen sijainti */
+    right: 0.5rem; /* Vaakasuuntainen sijainti */
+    display: flex;
+    flex-direction:column-reverse;
+    align-items: flex-end
+  }
+
+  .profile div {
+    margin-left: 1rem;
+  }
+
   section {
     padding: 1.5rem 1rem 1rem 1rem;
   }
@@ -177,4 +193,9 @@ textarea {
 
 .info a {
   color: #975579;
+}
+
+.navigointi {
+  margin: 0; /* Varmista, ettei ylimääräistä marginaalia */
+  padding: 2.4rem 0; /* Lisää tilaa ylhäältä ja alhaalta */
 }

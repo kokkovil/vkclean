@@ -7,8 +7,7 @@
   </head>
   <body>
   <header>
-      <h1><a href="<?=BASEURL?>">VKClean</a></h1>
-      <div class="profile">
+  <div class="profile">
         <?php
           if (isset($_SESSION['user'])) {
             echo "<div>$_SESSION[user]</div>";
@@ -18,6 +17,7 @@
           }
         ?>
       </div>
+      <h1><a href="<?=BASEURL?>">VKClean</a></h1>
       <nav class="navigointi">
         <ul>
           <li><a href="<?= BASEURL ?>">Etusivu</a></li>
