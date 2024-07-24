@@ -58,6 +58,10 @@ switch ($request) {
     case '/tietoayrityksesta':
         echo $templates->render('tietoayrityksesta');
         break;
+    case '/kirjaudu':
+        echo $templates->render('kirjaudu', [ 'error' => []]);
+        break;
+          
     default:
         echo $templates->render('notfound');
         break;
