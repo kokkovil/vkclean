@@ -1,7 +1,7 @@
 <?php
 
-function lisaaTili($formdata) {
-  
+function lisaaTili($formdata, $baseurl='') {
+
   // Tuodaan asiakas-mallin funktiot, joilla voidaan lisätä
   // asiakkaan tiedot tietokantaan.
   require_once MODEL_DIR . 'asiakas.php';
@@ -80,17 +80,37 @@ if (isset($formdata['yritys'])) {
     // tulee palautusarvona lisätyn asiakkaan id-tunniste.
     $idasiakas = lisaaAsiakas($nimi, $yritys, $puhelinnumero, $email, $salasana);
 
-    // Tarkistetaan onnistuiko asiakkaan tietojen lisääminen.
-    // Jos idasiakas-muuttujassa on positiivinen arvo,
+        // Tarkistetaan onnistuiko henkilön tietojen lisääminen.
+    // Jos idhenkilo-muuttujassa on positiivinen arvo,
     // onnistui rivin lisääminen. Muuten liäämisessä ilmeni
     // ongelma.
     if ($idasiakas) {
-      return [
-        "status" => 200,
-        "id"     => $idasiakas,
-        "data"   => $formdata
-      ];
+
+      // Luodaan käyttäjälle aktivointiavain ja muodostetaan
+      // aktivointilinkki.
+      require_once(HELPERS_DIR . "secret.php");
+      $avain = generateActivationCode($email);
+      $url = 'https://' . $_SERVER['HTTP_HOST'] . $baseurl . "/vahvista?key=$avain";
+
+      // Päivitetään aktivointiavain tietokantaan ja lähetetään
+      // käyttäjälle sähköpostia. Jos tämä onnistui, niin palautetaan
+      // palautusarvona tieto tilin onnistuneesta luomisesta. Muuten
+      // palautetaan virhekoodi, joka ilmoittaa, että jokin
+      // lisäyksessä epäonnistui.
+      if (paivitaVahvavain($email,$avain) && lahetaVahvavain($email,$url)) {
+        return [
+          "status" => 200,
+          "id"     => $idasiakas,
+          "data"   => $formdata
+        ];
+      } else {
+        return [
+          "status" => 500,
+          "data"   => $formdata
+        ];
+      }
     } else {
+
       return [
         "status" => 500,
         "data"   => $formdata
@@ -107,6 +127,21 @@ if (isset($formdata['yritys'])) {
     ];
 
   }
+}
+
+function lahetaVahvavain($email,$url) {
+  $message = "Hei!\n\n" . 
+             "Olet luonut tilin tällä shköpostiosoitteella,\n" . 
+             "VKClean sivustolle. Klikkaamalla alla olevaa\n" . 
+             "linkkiä vahvistat käyttämäsi sähköpostiosoitteen\n" .
+             "ja pääset käyttämään Ota yhteyttä sivua.\n\n" . 
+             "$url\n\n" .
+             "Jos et ole rekisteröitynyt VKClean sivulle, niin\n" . 
+             "silloin tämä sähköposti on tullut sinulle\n" .
+             "vahingossa. Siinä tapauksessa ole hyvä ja\n" .
+             "poista tämä viesti.\n\n".
+             "Terveisin, VKCclean";
+  return mail($email,'VKClean sivuston aktivointilinkki',$message);
 }
 
 ?>
