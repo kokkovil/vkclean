@@ -46,9 +46,7 @@ switch ($request) {
         if (isset($_POST['laheta'])) {
             $formdata = cleanArrayData($_POST);
             require_once CONTROLLER_DIR . 'tili.php';
-
-            $tulos = lisaaTili($formdata);
-
+            $tulos = lisaaTili($formdata,$config['urls']['baseUrl']);
             if ($tulos['status'] == "200") {
                 echo $templates->render('tili_luotu', ['formdata' => $formdata]);
             } else {
@@ -101,12 +99,28 @@ switch ($request) {
             echo $templates->render('kirjaudu', ['error' => []]);
         }
         break;
+    case "/vahvista":
+        if (isset($_GET['key'])) {
+            $key = $_GET['key'];
+            require_once MODEL_DIR . 'henkilo.php';
+            if (vahvistaTili($key)) {
+            echo $templates->render('tili_aktivoitu');
+            } else {
+            echo $templates->render('tili_aktivointi_virhe');
+            }
+        } else {
+            header("Location: " . $config['urls']['baseUrl']);
+        }
+        break;
+      
 
     case '/logout':
         require_once CONTROLLER_DIR . 'kirjaudu.php';
         logout();
         header("Location: " . BASEURL);
         exit();
+
+        
 
     default:
         echo $templates->render('notfound');
