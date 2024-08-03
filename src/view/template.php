@@ -36,7 +36,7 @@
     </section>
     <footer>
       <hr>
-      <div>vkclean by Veera Kankaanpää</div>
+      <div>VKClean by Ville Kokkonen</div>
     </footer>
   </body>
 </html>

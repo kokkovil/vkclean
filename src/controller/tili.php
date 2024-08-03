@@ -131,7 +131,7 @@ if (isset($formdata['yritys'])) {
 
 function lahetaVahvavain($email,$url) {
   $message = "Hei!\n\n" . 
-             "Olet luonut tilin tällä shköpostiosoitteella,\n" . 
+             "Olet luonut tilin tällä sähköpostiosoitteella,\n" . 
              "VKClean sivustolle. Klikkaamalla alla olevaa\n" . 
              "linkkiä vahvistat käyttämäsi sähköpostiosoitteen\n" .
              "ja pääset käyttämään Ota yhteyttä sivua.\n\n" . 

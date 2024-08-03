@@ -2,4 +2,4 @@
 
 <h1>Tietoa yrityksestä</h1>
 
-<p>tähänä voi kirjoittaa tietoa yrityksestä</p>
+<p>tähän voi kirjoittaa tietoa yrityksestä</p>

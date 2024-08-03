@@ -63,10 +63,10 @@ switch ($request) {
 
     case '/ota_yhteytta':
         if ($loggeduser) {
-            if (isset($_POST['laheta'])) {
+            if (isset($_POST['otayhteytta'])) {
                 require_once CONTROLLER_DIR . 'ota_yhteytta.php';
                 $tulos = otaYhteytta();
-
+        
                 if ($tulos['status'] == 200) {
                     echo $templates->render('kiitos'); // Ohjaa käyttäjä kiitos-sivulle
                 } else {
@@ -79,6 +79,7 @@ switch ($request) {
             echo $templates->render('info'); // Ohjaa kirjautumattomat käyttäjät info-sivulle
         }
         break;
+        
 
     case '/tietoayrityksesta':
         echo $templates->render('tietoayrityksesta');

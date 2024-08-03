@@ -1,4 +1,5 @@
 <?php
+
 require_once MODEL_DIR . 'yhteydenotto.php'; // Tuodaan malli yhteydenotoille
 require_once HELPERS_DIR . 'form.php'; // Lomake-tietojen käsittelyyn
 
@@ -29,9 +30,18 @@ function otaYhteytta() {
         $email = $formdata['email'];
         $viesti = $formdata['message'];
 
-        $result = tallennaYhteydenotto($nimi, $email, $viesti);
+        $result = lisaaYhteydenotto($nimi, $email, $viesti);
 
         if ($result) {
+            // Lisää tämä osa
+            // Hae admin-käyttäjien sähköpostiosoitteet
+            require_once MODEL_DIR . 'lahetys_admin.php';
+            $adminEmails = haeAdminEmails(); // Hae adminien sähköpostiosoitteet
+
+            // Lähetä sähköpostit admin-käyttäjille
+            require_once HELPERS_DIR . 'lahettaja.php';
+            sendAdminEmails($formdata, $adminEmails);
+
             return [
                 "status" => 200,
                 "message" => "Viesti lähetetty onnistuneesti."
@@ -49,7 +59,8 @@ function otaYhteytta() {
         ];
     }
 }
-?>
+
+
 
 
 
