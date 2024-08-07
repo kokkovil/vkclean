@@ -195,3 +195,13 @@ textarea {
     margin: 0;
     padding: 2.4rem 0;
 }
+
+.etusesivun-lista {
+  list-style-type: none; /* Poistaa luettelopallot */
+  padding: 0; /* Poistaa sisennykset */
+  margin: 0; /* Poistaa ulkoreunan */
+}
+
+.etusesivun-lista li {
+  margin-bottom: 1rem; /* Lisää tilaa listan kohtien väliin */
+}

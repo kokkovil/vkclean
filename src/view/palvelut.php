@@ -14,7 +14,7 @@
         
         <!-- Palvelun sisältö, joka näytetään/piilotetaan klikkauksen mukaan -->
         <div id="palvelu-content-<?= $palvelu_item['palvelu_id'] ?>" class="palvelu-content" style="display: <?= ($palvelu && $palvelu_item['palvelu_id'] == $palvelu['palvelu_id']) ? 'block' : 'none' ?>;">
-            <h2><?= htmlspecialchars($palvelu_item['palvelu_nimi']) ?></h2>
+            <h2 style="font-size: 2rem;"><?= htmlspecialchars($palvelu_item['palvelu_nimi']) ?></h2>
             <div><?= htmlspecialchars($palvelu_item['palvelu_kuvaus']) ?></div>
             <div>Hinta: <?= htmlspecialchars($palvelu_item['palvelu_hinta']) ?> €</div>
         </div>
