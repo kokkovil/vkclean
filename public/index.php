@@ -24,23 +24,16 @@ switch ($request) {
         echo $templates->render('etusivu');
         break;
 
-    case '/palvelut':
-        require_once MODEL_DIR . 'palvelu.php';
-        $palvelut = haePalvelut();
-        echo $templates->render('palvelut', ['palvelut' => $palvelut]);
-        break;
-
-    case '/palvelu':
-        require_once MODEL_DIR . 'palvelu.php';
-        if (isset($_GET['id'])) {
-            $palvelu = haePalvelu($_GET['id']);
-            if ($palvelu) {
-                echo $templates->render('palvelu', ['palvelu' => $palvelu]);
+        case '/palvelut':
+            require_once MODEL_DIR . 'palvelu.php';
+            $palvelut = haePalvelut();
+            if (isset($_GET['id'])) {
+                $palvelu = haePalvelu($_GET['id']);
             } else {
-                echo $templates->render('palvelunotfound');
+                $palvelu = null;
             }
-        }
-        break;
+            echo $templates->render('palvelut', ['palvelut' => $palvelut, 'palvelu' => $palvelu]);
+            break;
 
     case '/lisaa_tili':
         if (isset($_POST['laheta'])) {

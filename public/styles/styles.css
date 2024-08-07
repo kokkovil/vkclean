@@ -4,198 +4,194 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-  }
+}
 
-  html {
+html {
     font-family: 'Rubik', sans-serif;
     background: url('../public/images/tausta.jpg') no-repeat center center fixed;
     background-size: cover;
-  }
+}
 
-  body {
+body {
     background-color: #c6e0e4;
     min-height: 100vh;
     max-width: 40rem;
     margin: 0 auto;
     box-shadow: 0px 0px 25px rgba(0,0,0,0.5);
-  }
-  
-  header {
+}
+
+header {
     background: linear-gradient(120deg, rgb(220, 241, 241) 0%, rgb(123, 208, 214) 36%, rgb(46, 106, 146) 100%);
     padding: 1rem 1.5rem;
     height: 150px;
-    position: relative; /* Tämä mahdollistaa sisäisten absoluuttisten elementtien sijoittelun oikein */
-  }
-  
-  header h1 {
+    position: relative;
+}
+
+header h1 {
     text-align: center;
     font-size: 3rem;
     font-weight: normal;
     margin-left: 0.5rem;
-  }
+}
 
-  header a {
+header a {
     color: #000;
     text-decoration: none;
-  }
-  
-  .profile {
+}
+
+
+.profile {
     font-size: small;
     position: absolute;
-    top: 0.5rem; /* Pystysuuntainen sijainti */
-    right: 0.5rem; /* Vaakasuuntainen sijainti */
+    top: 0.5rem;
+    right: 0.5rem;
     display: flex;
-    flex-direction:column-reverse;
-    align-items: flex-end
-  }
+    flex-direction: column-reverse;
+    align-items: flex-end;
+}
 
-  .profile div {
+.profile div {
     margin-left: 1rem;
-  }
+}
 
-  section {
+section {
     padding: 1.5rem 1rem 1rem 1rem;
-  }
+}
 
-  section h1 {
+section h1 {
     margin-bottom: 1rem;
-  }
+}
 
-  hr {
+hr {
     border: none;
     border-top: solid #1B1B3A 2px;
     margin: 1rem;
-  }
+}
 
-  footer {
+footer {
     font-size: 0.8rem;
     text-align: center;
     color: #1B1B3A;
-  }
+}
 
-  .palvelut > div {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-  
-  .palvelut > div > div:nth-child(3) {
-    text-align: right;
-  }
+/* Palvelut tyylit */
 
-  .palvelut > div {
+.palvelut {
     display: flex;
-    justify-content: space-between;
-  }
+    flex-direction: column; /* Asettaa palvelut pystysuoraan */
+}
+
+.palvelu-item {
+    display: flex;
+    flex-direction: column; /* Linkki ja sisältö pystysuoraan */
+    margin: 0 0 1rem 0; /* Poistaa vasemman marginaalin ja säilyttää muiden marginaalit */
+    padding: 0 0 1rem 0; /* Poistaa vasemman paddingin ja säilyttää muiden paddingit */
+    border-bottom: 1px solid #ddd; /* Rajaa palvelu-itemit */
+}
+
+.palvelu-link {
   
-  form > div {
+    flex: 1; /* Linkki vie tilaa, mutta ei ole liian suuri */
+}
+
+.palvelu-link a {
+  
+  text-decoration: double;
+  color: #000;
+
+}
+
+.palvelu-link a:hover {
+  
+  color:#975579
+
+}
+.palvelu-content {
+    flex: 3; /* Sisältö vie enemmän tilaa */
+    padding-left: 1rem; /* Väliä linkin ja sisällön väliin */
+}
+
+/* Lomakkeen kentät */
+form > div {
     display: flex;
     flex-direction: column;
     margin-top: 0.5rem;
-  }
-
-  
-  input {
-    border: 1px solid #999;
-    border-radius: 0.3rem;
-    padding: 0.45rem;
-    font-size: 1rem;
-  }
-
-  input[type=submit] {
-    padding: 0.5rem 3rem;
-    border-radius: 0.3rem;
-    background-color: #975579;
-    color: #000;
-    font-weight: bold;
-    min-width: 12rem;
-    margin: 1rem auto;
-  }
-
-  .error {
-    color: red;
-    font-size: 0.8rem;
-  }
-  
-  /* Lomakkeen kentät */
-form > div {
-  display: flex;
-  flex-direction: column;
-  margin-top: 0.5rem;
 }
 
 /* Tekstikentät ja tekstialueet */
 input[type="text"],
 input[type="email"],
+input[type="password"],
 textarea {
-  border: 1px solid #999;
-  border-radius: 0.3rem;
-  padding: 0.45rem;
-  font-size: 1rem;
-  margin-bottom: 1rem;
-  background-color: #fff; /* Taustaväri kentille */
+    border: 1px solid #999;
+    border-radius: 0.3rem;
+    padding: 0.45rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    background-color: #fff;
 }
 
 /* Lomakkeen lähetyspainike */
 input[type="submit"] {
-  padding: 0.5rem 1.5rem;
-  border-radius: 0.3rem;
-  background-color: #77a7b3; /* Taustaväri sama kuin aiemmin */
-  color: #0a0a0a;
-  font-weight: bold;
-  min-width: 12rem;
-  margin: 1rem auto;
-  cursor: pointer;
-  border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0.3rem;
+    background-color: #77a7b3;
+    color: #0a0a0a;
+    font-weight: bold;
+    min-width: 12rem;
+    margin: 1rem auto;
+    cursor: pointer;
+    border: none;
 }
 
 /* Lomakkeen lähetyspainikkeen hover-tila */
 input[type="submit"]:hover {
-  background-color: #7a4b5e; /* Tummempi sävy hover-tilassa */
+    background-color: #975579;
 }
 
 /* Tekstialueen tyyli */
 textarea {
-  resize: vertical; /* Sallii käyttäjän säätää korkeutta */
-  min-height: 150px;
+    resize: vertical;
+    min-height: 150px;
 }
 
 .navigointi ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  justify-content: space-around; /* Voit käyttää myös 'flex-start' tai 'flex-end' riippuen haluamastasi kohdistuksesta */
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
 }
-  
+
 .navigointi li {
-  display: inline;
+    display: inline;
 }
-  
+
 .navigointi a {
-  text-decoration: none;
-  padding: 10px 15px;
-  display: block;
-  color: #000; /* Voit muuttaa haluamasi värin */
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+    color: #000;
 }
 
 .navigointi a:hover {
-  background-color: #ddd; /* Voit muuttaa hover-efektin värin */
+    color: #975579;
 }
 
 .info {
-  background-color: #e5e5e5;
-  border: 1px solid #999;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  margin: 1rem;
-  text-align: center;
+    background-color: #e5e5e5;
+    border: 1px solid #999;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    text-align: center;
 }
 
 .info a {
-  color: #975579;
+    color: #975579;
 }
 
 .navigointi {
-  margin: 0; /* Varmista, ettei ylimääräistä marginaalia */
-  padding: 2.4rem 0; /* Lisää tilaa ylhäältä ja alhaalta */
+    margin: 0;
+    padding: 2.4rem 0;
 }

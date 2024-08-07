@@ -20,7 +20,9 @@
           }
         ?>
     </div>
-      <h1><a href="<?=BASEURL?>">VKClean</a></h1>
+    <h1 class="logo">
+      <a href="<?= BASEURL ?>">VKClean</a>
+    </h1>
       <nav class="navigointi">
         <ul>
           <li><a href="<?= BASEURL ?>">Etusivu</a></li>
