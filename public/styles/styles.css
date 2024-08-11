@@ -205,3 +205,34 @@ textarea {
 .etusesivun-lista li {
   margin-bottom: 1rem; /* Lisää tilaa listan kohtien väliin */
 }
+
+/* Tyylitellään luettelolista */
+.yhteystiedot-lista {
+    list-style-type: none; /* Poistaa oletuslistamerkit */
+    padding: 0; /* Poistaa oletusvälin */
+    margin: 0; /* Poistaa oletusmarginin */
+}
+
+/* Tyylitellään yksittäiset listaelementit */
+.contact-item {
+    font-size: 1em; /* Asettaa fonttikoon */
+    color: #555; /* Vaaleampi harmaa väri */
+    margin-bottom: 10px; /* Lisää tilaa listaelementtien väliin */
+}
+
+/* Tyylitellään sähköpostilinkit */
+.contact-email {
+    color: #007BFF; /* Sininen väri */
+    text-decoration: none; /* Poistaa oletusalaviivan */
+}
+
+/* Tyylitellään verkkosivulinkit */
+.contact-website {
+    color: #007BFF; /* Sininen väri */
+    text-decoration: none; /* Poistaa oletusalaviivan */
+}
+
+/* Lisää alaviiva linkin hover-tilassa */
+.contact-email:hover, .contact-website:hover {
+    text-decoration: underline; /* Lisää alaviiva hover-tilassa */
+}

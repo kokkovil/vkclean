@@ -9,18 +9,18 @@ function sendAdminEmails($formData, $adminEmails) {
         'name' => 'Nimi',
         'email' => 'Sähköpostiosoite',
         'message' => 'Viesti',
-        // Lisää muita kenttiä tarvittaessa
+        
     ];
 
     // Lisää lomakkeen tiedot viestiin
     foreach ($formData as $key => $value) {
-        if (isset($fieldNames[$key])) { // Tarkista, onko kenttä määritelty
+        if (isset($fieldNames[$key])) { // Tarkistaa, onko kenttä määritelty
             $label = $fieldNames[$key];
             $message .= "$label: " . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . "\n";
     }
 }
 
-    // Tarkista, ettei viestin loppuun ole jäänyt ylimääräistä tekstiä tai merkkejä
+    // Tarkistaa, ettei viestin loppuun ole jäänyt ylimääräistä tekstiä tai merkkejä
     $message = trim($message); // Poistaa mahdolliset ylimääräiset rivinvaihdot tai välilyönnit viestin alusta ja lopusta
 
     $headers = "From: no-reply@yourdomain.com\r\n";
